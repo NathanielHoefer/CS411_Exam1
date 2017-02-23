@@ -18,12 +18,17 @@ PizzaOrder::PizzaOrder()
 	// Default Constructor
 }
 
+int PizzaOrder::getPizzaCount() const
+{
+	return mPizzas.size();
+}
+
 void PizzaOrder::addPizza(Size size, int toppings)
 {
 	mPizzas.push_back(Pizza(size, toppings));
 }
 
-double PizzaOrder::calcTotalCost()
+double PizzaOrder::calcTotalCost() const
 {
 	double cost;
 	for (int i = 0; i < (int) mPizzas.size(); i++) {
@@ -32,12 +37,14 @@ double PizzaOrder::calcTotalCost()
 	return cost;
 }
 
-std::ostream & operator <<(const std::ostream &lhs, const PizzaOrder &rhs)
+std::ostream & operator <<(std::ostream &lhs, const PizzaOrder &rhs)
 {
+	lhs << "Pizzas Ordered: " << rhs.getPizzaCount() << "\n";
+	lhs << "----------------------------------------------------\n";
 	for (int i = 0; i < (int) rhs.mPizzas.size(); i++) {
 		lhs << rhs.mPizzas[i] << "\n";
 	}
 	lhs << "----------------------------------------------------\n";
-	lhs << "Total Cost = " << rhs.calcTotalCost() << "\n";
+	lhs << "Total Cost = $" << std::fixed << std::setprecision(2) << rhs.calcTotalCost() << "\n";
 }
 

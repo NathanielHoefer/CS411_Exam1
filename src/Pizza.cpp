@@ -27,12 +27,12 @@ Pizza::Pizza(Size size, int toppings)
 	calcPrice();
 }
 
-Size Pizza::getSize()
+Size Pizza::getSize() const
 {
 	return mSize;
 }
 
-double Pizza::getPrice()
+double Pizza::getPrice() const
 {
 	return mPrice;
 }
@@ -56,22 +56,23 @@ void Pizza::calcPrice()
 	mPrice += (TOPPING_COST * mToppings);
 }
 
-std::ostream & operator <<(const std::ostream &lhs, const Pizza &rhs)
+std::ostream & operator <<(std::ostream &lhs, const Pizza &rhs)
 {
 	std::string size;
 	switch (rhs.mSize) {
 	case SMALL :
-		size = "Small";
+		size = "Small, ";
 		break;
 	case MEDIUM :
-		size = "Medium";
+		size = "Medium,";
 		break;
 	case LARGE :
-		size = "Large";
+		size = "Large, ";
 		break;
 	}
 	lhs << "Size = " << size;
-	lhs << ", Number of Toppings = " << rhs.mToppings;
-	lhs << ", Price = " << rhs.mPrice;
+	lhs << " Number of Toppings = " << rhs.mToppings;
+	lhs << ", Price = $" << std::right << std::setw(5)
+		<< std::fixed << std::setprecision(2) << rhs.mPrice;
 	return lhs;
 }

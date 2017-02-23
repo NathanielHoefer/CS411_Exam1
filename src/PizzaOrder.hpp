@@ -17,6 +17,7 @@
 #include <ostream>
 #include <vector>
 #include <string>
+#include <iomanip>
 #include "Pizza.hpp"
 
 class PizzaOrder
@@ -25,9 +26,16 @@ class PizzaOrder
 
 public:
 	PizzaOrder();
+
+	// returns the number of pizzas orderd
+	int getPizzaCount() const;
+
+	// Adds a pizza to the current order
 	void addPizza(Size size, int toppings);
-	double calcTotalCost();
-	friend std::ostream & operator <<(const std::ostream &lhs, const PizzaOrder &rhs);
+
+	// Calculates the total cost of the current order
+	double calcTotalCost() const;
+	friend std::ostream & operator <<(std::ostream &lhs, const PizzaOrder &rhs);
 };
 
 

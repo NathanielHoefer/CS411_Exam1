@@ -15,6 +15,7 @@
 #define SRC_PIZZA_HPP_
 
 #include <ostream>
+#include <iomanip>
 
 static const double SMALL_COST = 6;
 static const double MEDIUM_COST = 8;
@@ -32,10 +33,11 @@ class Pizza
 public:
 	Pizza();
 	Pizza(Size size, int toppings);
-	Size getSize();
-	double getPrice();
-	friend std::ostream & operator <<(const std::ostream &lhs, const Pizza &rhs);
+	Size getSize() const;
+	double getPrice() const;
+	friend std::ostream & operator <<(std::ostream &lhs, const Pizza &rhs);
 private:
+
 	// Calculates the price of the pizza and updates the member variable
 	void calcPrice();
 };
